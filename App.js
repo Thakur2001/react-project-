@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { resList } from "./ResturantCard";
 
 const Header = () => {
   return (
@@ -18,18 +19,18 @@ const Header = () => {
     </div>
   );
 };
-const ResCards = () => {
+const ResCards = ({ item }) => {
   return (
     <div className="res-Cards">
       <img
         className="res-logo"
-        src="https://www.bigsight.jp/visitor/shop/img/carousel-food-square-01.jpg"
+        src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${item.info.cloudinaryImageId}`}
         alt="res-img"
       />
-      <h3>Hot Bowls</h3>
-      <h4>Burger, Indian, Asian</h4>
-      <h4>4.4 Stars</h4>
-      <h4>40 Minutes</h4>
+      <h3>{item.info.name}</h3>
+      <h4>{item.info.cuisines.join(", ")}</h4>
+      <h4>{item.info.avgRating} star</h4>
+      <h4>{item.info.sla.slaString}</h4>
     </div>
   );
 };
@@ -38,23 +39,14 @@ const Body = () => {
     <div className="body">
       <div className="search-bar">Search</div>
       <div className="res-Container">
-        <ResCards />
-        <ResCards />
-        <ResCards />
-        <ResCards />
-        <ResCards />
-        <ResCards />
-        <ResCards />
-        <ResCards />
-        <ResCards />
-        <ResCards />
-        <ResCards />
-        <ResCards />
-        <ResCards />
+        {resList.map((item, index) => {
+          return <ResCards key={index} item={item} />;
+        })}
       </div>
     </div>
   );
 };
+
 const Applayout = () => {
   return (
     <div className="app">
