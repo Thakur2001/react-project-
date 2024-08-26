@@ -1438,3 +1438,5 @@ export const resList = [
     },
   },
 ];
+
+export default resList;
